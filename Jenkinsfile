@@ -13,7 +13,19 @@ pipeline {
     }
 
     stages {
-
+        stage('Clean Workspace') {
+            steps {
+                    deleteDir()
+            }
+        }
+        
+        stage('Checkout') {
+            steps {
+                git branch: 'main',
+                url: 'https://github.com/dharidost/terraform-azure-vm.git'
+            }
+        }
+        
         stage('Terraform Init') {
             steps {
                 dir('terraform') {
